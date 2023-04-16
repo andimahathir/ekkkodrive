@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-ekkkodrive-dev-223233-authRole",
+      "UnauthRoleArn": "arn:aws:iam::585466981083:role/amplify-ekkkodrive-dev-223233-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::585466981083:role/amplify-ekkkodrive-dev-223233-authRole",
+      "Region": "ap-southeast-1",
+      "DeploymentBucketName": "amplify-ekkkodrive-dev-223233-deployment",
+      "UnauthRoleName": "amplify-ekkkodrive-dev-223233-unauthRole",
+      "StackName": "amplify-ekkkodrive-dev-223233",
+      "StackId": "arn:aws:cloudformation:ap-southeast-1:585466981083:stack/amplify-ekkkodrive-dev-223233/e9dd28b0-dc6b-11ed-8524-026e1562435c",
+      "AmplifyAppId": "d281oijz8a6gav"
+    },
+    "categories": {
+      "auth": {
+        "ekkkodrive0604f6af": {}
+      }
+    }
+  }
+}
