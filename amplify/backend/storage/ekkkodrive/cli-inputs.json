@@ -1,0 +1,14 @@
+{
+  "resourceName": "ekkkodrive",
+  "policyUUID": "055f95f3",
+  "bucketName": "ekkkodrive8aae1a5217bf43d894c0fab8add4ad95",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}
