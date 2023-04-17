@@ -6,9 +6,11 @@ import { Amplify } from "aws-amplify";
 import awsExports from "../aws-exports";
 Amplify.configure(awsExports);
 import { Auth } from "aws-amplify";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/router";
 
 export default function Signup() {
+    const { push } = useRouter();
+
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -37,7 +39,7 @@ export default function Signup() {
         event.preventDefault();
         try {
             await Auth.confirmSignUp(username, confirmationCode);
-            redirect("/login");
+            push("/login");
         } catch (error) {
             console.log("error confirming sign up", error);
         }
