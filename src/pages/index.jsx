@@ -52,6 +52,7 @@ export default function Home() {
     }
 
     async function UploadFile(e) {
+        e.preventDefault();
         const file = e.target.files[0];
         try {
             await Storage.put(file.name, file, {
@@ -95,7 +96,7 @@ export default function Home() {
 
     return user ? (
         <div className="bg-gray-900 h-screen w-screen">
-            <nav className="bg-white border-gray-200 dark:bg-gray-900">
+            <nav className="border-gray-200 bg-gray-900">
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                     <button className="flex items-center">
                         <img
@@ -106,13 +107,13 @@ export default function Home() {
                     </button>
                     <div className="flex items-center md:order-2">
                         <div className="flex items-center">
-                            <span className="block text-sm text-gray-900 dark:text-white">
+                            <span className="block text-sm text-white">
                                 Hello, {user.username}!
                             </span>
                             <button
                                 onClick={signOut}
                                 disabled={signOutDisabled}
-                                className="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                                className="inline-flex items-center p-2 ml-1 text-sm rounded-lg focus:outline-none focus:ring-2 text-gray-400 hover:bg-gray-700 focus:ring-gray-600"
                             >
                                 Sign Out
                             </button>
@@ -194,7 +195,7 @@ export default function Home() {
             <div className="flex items-center justify-center w-full mb-4">
                 <label
                     htmlFor="dropzone-file"
-                    className="flex flex-col items-center justify-center w-full h-auto border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+                    className="flex flex-col items-center justify-center w-full h-64 border-2 border-dashed rounded-lg cursor-pointer bg-gray-700 border-gray-600 hover:border-gray-500 hover:bg-gray-600"
                 >
                     <div className="flex flex-col items-center justify-center pt-2 pb-2">
                         <svg
@@ -212,10 +213,10 @@ export default function Home() {
                                 d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
                             ></path>
                         </svg>
-                        <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                        <p className="mb-2 text-sm text-gray-400">
                             <span className="font-semibold">
                                 Click to upload
-                            </span>{" "}
+                            </span>
                             or drag and drop
                         </p>
                     </div>
@@ -223,10 +224,21 @@ export default function Home() {
                         id="dropzone-file"
                         type="file"
                         className="hidden"
-                        onChange={UploadFile}
+                        onDrop={(e) => {
+                            e.preventDefault();
+                            UploadFile(e);
+                        }}
+                        onChange={(e) => {
+                            e.preventDefault();
+                            UploadFile(e);
+                        }}
+                        onDragOver={(e) => {
+                            e.preventDefault();
+                            UploadFile(e);
+                        }}
                     />
                     {uploadProgress > 0 && (
-                        <div className="w-full bg-gray-200 rounded-full dark:bg-gray-700">
+                        <div className="w-full rounded-full bg-gray-700">
                             <div
                                 className="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
                                 style={{ width: `${uploadProgress}%` }}
@@ -239,8 +251,8 @@ export default function Home() {
             </div>
 
             <div className="relative overflow-x-auto">
-                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <table className="w-full text-sm text-left text-gray-400">
+                    <thead className="text-xs uppercase bg-gray-700 text-gray-400">
                         <tr>
                             <th scope="col" className="px-6 py-3 w-full">
                                 File name
@@ -260,11 +272,11 @@ export default function Home() {
                         {fileList.map((file) => (
                             <tr
                                 key={file.eTag}
-                                className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                                className=" border-b bg-gray-800 border-gray-700"
                             >
                                 <th
                                     scope="row"
-                                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                    className="px-6 py-4 font-medium whitespace-nowrap text-white"
                                 >
                                     {file.key}
                                 </th>
@@ -277,7 +289,7 @@ export default function Home() {
                                 <td className="px-6 py-4">
                                     <button
                                         onClick={() => DeleteFile(file.key)}
-                                        className="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                                        className="inline-flex items-center p-2 ml-1 text-sm text-gray-400 rounded-lg  focus:outline-none focus:ring-2 hover:bg-gray-700 focus:ring-gray-600"
                                     >
                                         <TrashIcon className="h-6 w-6 text-gray-500" />
                                     </button>
@@ -293,7 +305,7 @@ export default function Home() {
             <div role="status">
                 <svg
                     aria-hidden="true"
-                    className="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+                    className="w-8 h-8 mr-2 animate-spin text-gray-600 fill-blue-600"
                     viewBox="0 0 100 101"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
