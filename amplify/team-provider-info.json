@@ -17,6 +17,12 @@
       },
       "storage": {
         "ekkkodrive": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d281oijz8a6gav",
+          "type": "cicd"
+        }
       }
     }
   }
